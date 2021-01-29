@@ -1,7 +1,7 @@
   
- class Fecha():
+class Fecha():
     
-    def __init__(self,d, m, a)
+    def __init__(self,d, m, a):
         self.__dia = d
         self.__mes = m
         self.__anio = a
