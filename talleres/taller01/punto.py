@@ -9,13 +9,12 @@ class Punto2D():
         self.__y = y
 
     def get_x(self):
-       
+        return self.__x
 
     def get_y(self):
-       
+        return self.__y
 
     def radio_polar(self):
-       
 
     def angulo_polar(self):
        
