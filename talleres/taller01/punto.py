@@ -15,7 +15,8 @@ class Punto2D():
         return self.__y
 
     def radio_polar(self):
-
+        return (self.__x ** 2 + self.__y ** 2) ** (1/2)
+    
     def angulo_polar(self):
        
 
