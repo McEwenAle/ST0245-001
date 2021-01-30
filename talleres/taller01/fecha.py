@@ -15,7 +15,7 @@ class Fecha():
     def anio(self):
         return self.__anio  
     
-    def comparar(self, otra):
+    def comparar(self, otro):
         x = self.__anio*10000 + self.__mes*100 + self.__dia 
         y = otro.anio()*10000 + otro.mes()*100 + otro.dia() 
         
@@ -27,4 +27,4 @@ class Fecha():
             return 0        
         
     def __str__(self): 
-        return "Dia: " + self.__dia + "\n" + "Mes: " + self.__mes + "\n" + "Año: " + self.__anio
+        return "Dia: " + str(self.__dia) + "\n" + "Mes: " + str(self.__mes) + "\n" + "Ano: " + str(self.__anio)
