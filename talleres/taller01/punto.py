@@ -1,4 +1,4 @@
-#!/usr/bin/python
+
 import math
 
 class Punto2D():
@@ -22,4 +22,9 @@ class Punto2D():
 
     def dist_euclidiana(self, other):
         return math.sqrt(pow(other.__x - self.__x, 2) + pow(other.__y - self.__y, 2))
+
+    def __str__(self):
+        return "(" + str(self.__x) + "," + str(self.__y) + ")"
+
+
 
