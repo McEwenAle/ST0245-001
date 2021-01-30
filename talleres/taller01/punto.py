@@ -15,10 +15,11 @@ class Punto2D():
         return self.__y
 
     def radio_polar(self):
-        return (self.__x ** 2 + self.__y ** 2) ** (1/2)
+        return math.sqrt(pow(self.__x, 2) + pow(self.__y, 2))
     
     def angulo_polar(self):
        return math.atan(self.__y / self.__x)
 
     def dist_euclidiana(self, other):
-        return ((other.__x - self.__x) ** 2 + (other.__y - self.__y) ** 2) ** (1/2)
+        return math.sqrt(pow(other.__x - self.__x, 2) + pow(other.__y - self.__y, 2))
+

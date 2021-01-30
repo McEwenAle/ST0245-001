@@ -1,5 +1,6 @@
 #!/usr/bin/python
 import math
+import punto as Punto2D
 
 class Line2D():
     """Representacion de punto en 2 dimensiones"""
@@ -15,11 +16,21 @@ class Line2D():
         return self.__punto2
 
     def puntosIntermedios(self):
-        m = (self.__punto2.getY() - self.__punto1.getY()) / (self.__punto2.getX() - self.__punto1.getX())
+        dy = (self.__punto2.getY() - self.__punto1.getY())
+        dx = (self.__punto2.getX() - self.__punto1.getX())
+        gcf = math.gcd(dy, dx)
+        dy /= gcf
+        dx /= gcf
         x = self.__punto1.getX()
         y = self.__punto1.getY()
-        puntos = [(x, y)]
+        punto = Punto2D(x, y)
+        puntos = [punto]
         while x != self.__punto2.getX() and y != self.__punto2.getY():
+            x += dx
+            y += dy
+            punto = Punto2D(x, y)
+            puntos.append(punto)
             pass
+        return puntos
 
        
