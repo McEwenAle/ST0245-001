@@ -12,7 +12,7 @@ class Line2D():
     def punto1(self):
         return self.__punto1
 
-    def punto1(self):
+    def punto2(self):
         return self.__punto2
 
     def puntosIntermedios(self):
