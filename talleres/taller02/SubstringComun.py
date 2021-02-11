@@ -1,9 +1,10 @@
-def lcs(i, j, x, y):
-    if(x == y):
-        return len(x)
-    elif(i == len(x) or j == len(y) or x == "" or y == ""):
-        return 0
-    return max(lcs(i+1, j, x, y), lcs(i+1, j, x[0:i] + x[i+1:len(x)], y),
-                lcs(i, j+1, x, y), lcs(i, j+1, x, y[0:i] + y[i+1:len(x)]))
+def lcs(i, j, x, y):    
+    if(i<0 or j<0):
+        return -1  
+    if(x[i:i+1] == y[j:j+1]):
+        return lcs(i-1, j-1, x, y) + 1
+    return max(lcs(i-1, j, x, y), lcs(i, j-1, x, y))
 
-print(lcs(0, 0, "ABCDGH", "AEDFHR"))
+x ="ABCD"
+y ="ABCD"
+print(lcs(len(x),len(y),x,y))
