@@ -3,7 +3,7 @@ def hanoi(topN, a = "principio", b = "auxiliar", c = "destino"):
         return "Move piece " + str(topN) + " to tower " + str(c)
     return hanoi(topN-1, a, c, b) + "\n" + "Move piece " + str(topN) + " to tower " + str(c) + "\n" + hanoi(topN-1, b, a, c)
 
-# print(hanoi(5, 1, 2, 3))
+print(hanoi(5, 1, 2, 3))
 
 def subset(s, base = ""):
     return permutations(base,s)
@@ -18,32 +18,52 @@ def permutations(base, stri):
 
 print(subset("abc"))
 
-def fila(board, i):
+def fila(board, j):
     for n in board:
-        if(board[n] == i):
+        if(n == j):
             return False
     return True
 
 def diagonal(board, i, j):
-    for n in range(len(board)):
-        if(n == len(board) or n == len(board[0])):
-            break
-        if(board[n+i][n+j] == 1):
-            return False
+    i1 = max(0, i-j)
+    j1 = max(0, j-i)
+    i2 = min(len(board)-1, j+i)
+    j2 = max(i-(len(board)-1-j), 0)
+    for n in range(i1,len(board)):
+        if(j1==board[n]):
+            return False        
+        j1+=1
+    for n in range(j2, len(board)):
+        if(n==board[i2]):
+            return False        
+        i2-=1
     return True
 
 
-
-
-
 def checkBoard(board, i, j):
-    return fila(board, i, j) and diagonal(board, i, j)
+    return fila(board, j) and diagonal(board, i, j)
 
-def nextAvailable(board, i, j):
-    for n in range(board(len)):
-        if(checkBoard(board, n, ))
+def reinas(n, board, i):
+    if(n==i):
+        return True
+    for m in range(len(board)):
+        if(checkBoard(board, i, m)):
+            board[i] = m
+            if(reinas(n, board, i+1)):
+                return True
+            board[i] = -1
+    return False
 
-def reinas(n, board):
-    if():
-        pass
+board = [-1]*8
+reinas(6, board, 0)
+print(board)
+
+            
+            
+            
+
+    
+    
+        
+    
     
