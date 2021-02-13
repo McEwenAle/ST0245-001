@@ -58,12 +58,25 @@ board = [-1]*8
 reinas(6, board, 0)
 print(board)
 
-            
-            
-            
 
-    
-    
+def tarritoDePaint(canvas,x, y, color, inColor = -1):
+    if(inColor == -1):
+        inColor = canvas[x][y]
+    if(inColor == color):
+        return
+    boaders = [[0,-1], [-1, 0], [1, 0], [0, 1]]
+    for boarder in boaders:
+        x1 = boarder[0] + x
+        y1 = boarder[1] + y
+        if(x1 > -1 and x1 < len(canvas) and
+           y1 > -1 and y1 < len(canvas[x1]) and
+           canvas[x1][y1] == inColor):
+            canvas[x1][y1] = color
+            tarritoDePaint(canvas, x1, y1, color, inColor)
+
+canvas = [[0, 0, 0],[1,0, 1],[1,0,1]]
+tarritoDePaint(canvas, 1, 0, 2)
+print(canvas)
         
     
     
