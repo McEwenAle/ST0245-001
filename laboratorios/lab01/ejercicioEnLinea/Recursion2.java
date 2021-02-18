@@ -24,16 +24,34 @@ public class Recursion2 {
     }
     
     public boolean groupNoAdj(int start, int[] nums, int target) {
-        ...
-    }
+        if(start >= nums.length)return target == 0;
+        boolean a = groupNoAdj(start+2, nums, target - nums[start]);
+        boolean b = groupNoAdj(start+1, nums, target);
+        return a || b;
+      }
+      
     
-    public boolean groupSum5(int start, int[] nums, int target) {
-        ...
-    }
+      public boolean groupSum5(int start, int[] nums, int target) {
+        if (start == nums.length) return target == 0; //C
+        if (nums[start] % 5 == 0){
+          if(!(start + 1 == nums.length) && nums[start+1] == 1)return groupSum5(start + 2, nums, target - nums[start]);
+          return groupSum5(start + 1, nums, target - nums[start]);
+        }
+        return groupSum5(start + 1, nums, target) || groupSum5(start + 1, nums, target - nums[start]);
+      }
+      
     
-    public boolean groupSumClump(int start, int[] nums, int target) {
-        ...
-    }
+      public boolean groupSumClump(int start, int[] nums, int target) {
+        if(start >= nums.length)return target == 0;
+        int i;
+        for(i = start + 1; i < nums.length; i++){
+          if(nums[start] != nums[i])break;
+        }
+        boolean a = groupSumClump(i, nums, target - ((i-start)*nums[start]));
+        boolean b = groupSumClump(i, nums, target);
+        return a || b;
+      }
+      
     
     public boolean splitArray(int[] nums) {
         return helper(0, nums, 0, 0);
