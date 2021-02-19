@@ -43,8 +43,7 @@ print(formas(4))
 #----------------------------Fibonacci---------------------------------#
 
 def fib_r(n):                             #Fibonacci recursivo
-    if(n == 0): return 0
-    if(n <= 2): return 1
+    if(n <= 2): return n
     return fib_r(n-1) + fib_r(n-2)
 
 print(fib_r(4))
