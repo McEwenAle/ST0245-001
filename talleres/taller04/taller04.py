@@ -25,13 +25,20 @@ def arrayMax(arr):
 def arrayMax_aux(arr, i, m):
     if(i == len(arr)):
         return m
-    return arrayMax_aux(arr, i+1, max(arr[i], m))
+    return arrayMax_aux(arr, i+1, max(m, arr[i]))
 
-def groupSum_aux(list, start, target):
-    pass
+def formas(n):
+    if n == 0:
+        return 1
+    a = 0
+    if n>1:
+        a = formas(n-2)
 
-def groupSum(list, target):
-    pass
+    return  a + formas(n-1)
+
+
+print(formas(4))
+   
 
 #----------------------------Fibonacci---------------------------------#
 
