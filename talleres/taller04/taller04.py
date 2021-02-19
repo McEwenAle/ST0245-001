@@ -1,6 +1,7 @@
 import random
 from matplotlib import pyplot as pl
 import time
+import sys
 
 # def array_generator(len):
 #     """List generator"""
@@ -18,6 +19,7 @@ import time
 
 # def insertion_sort(list):
   
+sys.setrecursionlimit(10000000)
 
 def arrayMax(arr):
     return arrayMax_aux(arr, 0, 0)
@@ -26,6 +28,18 @@ def arrayMax_aux(arr, i, m):
     if(i == len(arr)):
         return m
     return arrayMax_aux(arr, i+1, max(m, arr[i]))
+
+test = []
+for i in range(20):
+    test.append([i]*i*1000)    
+# print(test)
+
+
+for i in test:
+    start = time.time()
+    arrayMax(i)
+    print(time.time() - start)
+
 
 def formas(n):
     if n == 0:
@@ -37,7 +51,7 @@ def formas(n):
     return  a + formas(n-1)
 
 
-print(formas(4))
+# print(formas(4))
    
 
 #----------------------------Fibonacci---------------------------------#
@@ -46,6 +60,6 @@ def fib_r(n):                             #Fibonacci recursivo
     if(n <= 2): return n
     return fib_r(n-1) + fib_r(n-2)
 
-print(fib_r(4))
+# print(fib_r(4))
    
 
