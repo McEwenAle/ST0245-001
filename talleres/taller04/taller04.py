@@ -28,13 +28,18 @@ def arrayMax_aux(arr, i, m):
     return arrayMax_aux(arr, i+1, max(arr[i], m))
 
 def groupSum_aux(list, start, target):
-  
+    pass
 
 def groupSum(list, target):
-   
+    pass
 
 #----------------------------Fibonacci---------------------------------#
 
 def fib_r(n):                             #Fibonacci recursivo
+    if(n == 0): return 0
+    if(n <= 2): return 1
+    return fib_r(n-1) + fib_r(n-2)
+
+print(fib_r(4))
    
 
