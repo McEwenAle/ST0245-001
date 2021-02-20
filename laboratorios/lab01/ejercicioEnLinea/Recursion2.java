@@ -54,17 +54,20 @@ public class Recursion2 {
       
     
     public boolean splitArray(int[] nums) {
-        return helper(0, nums, 0, 0);
+        return helperSplitArray(0, nums, 0, 0);
     }
-
-    private boolean helper(int start, int[] nums, int sum1, int sum2) {
-        ...
+      
+    private boolean helperSplitArray(int index, int[] nums, int sum1, int sum2) {
+        if(index >= nums.length) return sum1==sum2;
+        return helperSplitArray(index+1, nums, sum1+nums[index], sum2) || helperSplitArray(index+1, nums, sum1, sum2+nums[index]);
     }
     
-    public boolean split53(int[] nums) {
-        return helper3(0, nums, 0, 0);
+    public boolean splitOdd10(int[] nums) {
+      return helperOdd10(0, nums, 0, 0);
     }
-
-    private boolean helper3(int index, int[] nums, int sum5s, int sum3n5) {
-        ...
+    private boolean helperOdd10(int index, int[] nums, int sumOdd, int sum10) {
+      if(index >= nums.length) return sumOdd % 2 == 1 && sum10 % 10 == 0;
+      return helperOdd10(index+1, nums, sumOdd + nums[index], sum10) || helperOdd10(index+1, nums, sumOdd, sum10 + nums[index]); 
+    }
 }
+  
