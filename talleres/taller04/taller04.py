@@ -30,15 +30,6 @@ def arrayMax_aux(arr, i, m):
     return arrayMax_aux(arr, i+1, max(m, arr[i]))
 
 test = []
-for i in range(20):
-    test.append([i]*i*1000)    
-# print(test)
-
-
-for i in test:
-    start = time.time()
-    arrayMax(i)
-    print(time.time() - start)
 
 
 def formas(n):
@@ -50,10 +41,6 @@ def formas(n):
 
     return  a + formas(n-1)
 
-
-# print(formas(4))
-   
-
 #----------------------------Fibonacci---------------------------------#
 
 def fib_r(n):                             #Fibonacci recursivo
@@ -61,5 +48,8 @@ def fib_r(n):                             #Fibonacci recursivo
     return fib_r(n-1) + fib_r(n-2)
 
 # print(fib_r(4))
-   
+for i in range(1, 22):
+    start = time.time()
+    fib_r(i)
+    print(time.time() - start)
 
