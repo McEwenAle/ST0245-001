@@ -1,3 +1,6 @@
+import time
+import random, string
+
 def lcs(i, j, x, y):    
     if(i<0 or j<0):
         return -1  
@@ -7,4 +10,11 @@ def lcs(i, j, x, y):
 
 x ="ABCD"
 y ="ABCD"
-print(lcs(len(x),len(y),x,y))
+#print(lcs(len(x),len(y),x,y))
+
+for i in range(1, 22):
+    n = "".join(random.choice(string.ascii_uppercase + string.digits) for _ in range(i))
+    m = "".join(random.choice(string.ascii_uppercase + string.digits) for _ in range(i))
+    start = time.time()
+    lcs(len(n), len(m), n, m)
+    print(time.time() - start)
