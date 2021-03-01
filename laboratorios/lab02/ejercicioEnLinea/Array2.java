@@ -12,12 +12,27 @@ public class Array2 {
     }
 
     public int[] post4(int[] nums) {
-       
+        int i = nums.length - 1;
+        for(; i > -1; i--){
+          if(nums[i] == 4){break;}
+        }
+        int[] nNums = new int[nums.length - i - 1];
+        i++;
+        for(int j = 0;j < nNums.length && i < nums.length; j++){
+          nNums[j] = nums[i];
+          i++;
+        }
+        return nNums;
     }
+    
 
     public boolean only14(int[] nums) {
-     
-    }
+        for(int i = 0; i < nums.length; i++){
+          if(nums[i] != 1 && nums[i] != 4)return false;
+        }
+        return true;
+      }
+      
 
     public String[] fizzArray2(int n) {
        
