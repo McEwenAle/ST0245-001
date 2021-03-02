@@ -60,8 +60,28 @@ public class Array3 {
         return false;
       }
       
+      public int countClumps(int[] nums) {
+        int n = -1;
+        int count = 0;
+        for(int i = 1; i<nums.length; i++){
+          if(nums[i] != n && nums[i] == nums[i-1]){
+            count++;
+          }
+          n = nums[i-1];
+        }
+        return count;
+      }
 
-    public int[] seriesUp(int n) {
+      public int[] seriesUp(int n) {
+        int len = n*(n+1)/2;
+        int[] nums = new int[len];
+        for(int i = 1; i<=n; i++){
+          for(int j = i; j>0; j--){
+            int pos = (i*(i+1)/2) - j ;
+            nums[pos] = i - j + 1;
+          }
+        }
+        return nums;
+      }
       
-    }
 }
