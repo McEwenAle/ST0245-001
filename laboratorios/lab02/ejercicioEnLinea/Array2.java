@@ -11,9 +11,22 @@ public class Array2 {
         //Complejidad O(n)
     }
 
-    public int[] post4(int[] nums) {
-       
-    }
+    public boolean haveThree(int[] nums) {
+        int count = 0;
+        for(int i = 0; i < nums.length; i++){
+          if(nums[i] == 3){
+            count += 1;
+            if(i > 0 && nums[i] == nums[i-1]){
+            return false;
+            }
+          }
+        }
+        if(count == 3){
+          return true;
+        }else{
+          return false;
+        }
+      }
 
     public boolean only14(int[] nums) {
      
