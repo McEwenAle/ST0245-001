@@ -76,8 +76,8 @@ def merge_sort(arr):
 # print(sarr)
 for i in range(1, 22):
     arr = []
-    for j in range(i*10000):
+    for j in range(i*1000):
         arr.append(int(random.random()*i))
     start = time.time()
-    merge_sort(arr)
+    insertionSort(arr)
     print(time.time() - start)

@@ -13,12 +13,12 @@ public class Array2 {
 
     public int[] post4(int[] nums) {
         int i = nums.length - 1;
-        for(; i > -1; i--){
+        for(; i > -1; i--){// n
           if(nums[i] == 4){break;}
         }
         int[] nNums = new int[nums.length - i - 1];
         i++;
-        for(int j = 0;j < nNums.length && i < nums.length; j++){
+        for(int j = 0;j < nNums.length && i < nums.length; j++){ // n
           nNums[j] = nums[i];
           i++;
         }
@@ -27,7 +27,7 @@ public class Array2 {
     
 
     public boolean only14(int[] nums) {
-        for(int i = 0; i < nums.length; i++){
+        for(int i = 0; i < nums.length; i++){ // n
           if(nums[i] != 1 && nums[i] != 4)return false;
         }
         return true;
