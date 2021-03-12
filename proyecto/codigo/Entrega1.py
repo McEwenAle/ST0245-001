@@ -3,6 +3,7 @@ import numpy as np
 import pandas as pd
 import os, sys
 
+
 ganadoEnfermoCSVs = "./archivosCSV/ganadoEnfermoCSVs"
 ganadoSanoCSVs = "./archivosCSV/ganadoSanoCSVs"
 
