@@ -2,43 +2,45 @@ import math
 import numpy as np
 import pandas as pd
 import os, sys
-from Entrega2 import Compresor
+from Entrega2 import Image
 
-compresor = Compresor()
+class ImportExport:
+    def __init__(self) -> None:
+        pass
 
-ganadoEnfermoCSVs = "./archivosCSV/ganadoEnfermoCSVs"
-ganadoSanoCSVs = "./archivosCSV/ganadoSanoCSVs"
+    def importPhotos(self):
+        ganadoEnfermoCSVs = "./archivosCSV/ganadoEnfermoCSVs"
+        ganadoSanoCSVs = "./archivosCSV/ganadoSanoCSVs"
 
-dirGanadoEnfermoCSVs = os.listdir(ganadoEnfermoCSVs)
+        dirGanadoEnfermoCSVs = os.listdir(ganadoEnfermoCSVs)
 
-dirGanadoSanoCSVs = os.listdir(ganadoSanoCSVs)
+        dirGanadoSanoCSVs = os.listdir(ganadoSanoCSVs)
 
-dataGanadoEnfermoCSVs = [[]] * len(dirGanadoEnfermoCSVs)
-dataGanadoSanoCSVs = [[]] * len(dirGanadoSanoCSVs)
+        self.dataGanadoEnfermoCSVs = [[]] * len(dirGanadoEnfermoCSVs)
+        self.dataGanadoSanoCSVs = [[]] * len(dirGanadoSanoCSVs)
 
-for i in range(len(dirGanadoEnfermoCSVs)):
-    p = ganadoEnfermoCSVs + "/" + dirGanadoEnfermoCSVs[i]
-    file = open(p)
-    dataGanadoEnfermoCSVs[i] = np.loadtxt(file, delimiter=",")
+        for i in range(len(dirGanadoEnfermoCSVs)):
+            p = ganadoEnfermoCSVs + "/" + dirGanadoEnfermoCSVs[i]
+            self.dataGanadoEnfermoCSVs[i] = Image(p)
 
-for i in range(len(dirGanadoSanoCSVs)):
-    p = ganadoSanoCSVs + "/" + dirGanadoSanoCSVs[i]
-    file = open(p)
-    dataGanadoSanoCSVs[i] = np.loadtxt(file, delimiter=",")
+        for i in range(len(dirGanadoSanoCSVs)):
+            p = ganadoSanoCSVs + "/" + dirGanadoSanoCSVs[i]
+            self.dataGanadoSanoCSVs[i] = Image(p)
+            
+    def export(self):
+        outputGanadoEnfermoCSVs = "./archivosCSV/outputGanadoEnfermoCSVs"
+        outputGanadoSanoCSVs = "./archivosCSV/outputGanadoSanoCSVs"
 
-outputGanadoEnfermoCSVs = "./archivosCSV/outputGanadoEnfermoCSVs"
-outputGanadoSanoCSVs = "./archivosCSV/outputGanadoSanoCSVs"
+        # for i in range(len(self.dataGanadoEnfermoCSVs)):
+        #     p = outputGanadoEnfermoCSVs + "/" + dirGanadoEnfermoCSVs[i]
+        #     self.dataGanadoEnfermoCSVs[i].export(p)
 
-# for i in range(len(dataGanadoEnfermoCSVs)):
-#     p = outputGanadoEnfermoCSVs + "/" + dirGanadoEnfermoCSVs[i]
-#     np.savetxt(p, dataGanadoEnfermoCSVs[i], delimiter=",")
+        # for i in range(len(dirGanadoSanoCSVs)):
+        #     p = outputGanadoSanoCSVs + "/" + dirGanadoSanoCSVs[i]
+        #     self.dataGanadoSanoCSVs[i].export(p)
 
-# for i in range(len(dirGanadoSanoCSVs)):
-#     p = outputGanadoSanoCSVs + "/" + dirGanadoSanoCSVs[i]
-#     np.savetxt(p, dataGanadoSanoCSVs[i], delimiter=",")
-
-# print(dataGanadoEnfermoCSVs)
-# print("############")
-# print(dataGanadoSanoCSVs)
+    # print(self.dataGanadoEnfermoCSVs)
+    # print("############")
+    # print(self.dataGanadoSanoCSVs)
 
 
