@@ -1,0 +1,1 @@
+amplified = compresor.amplify(compresed, len(numpy_array)*2, len(numpy_array[0])*2)
