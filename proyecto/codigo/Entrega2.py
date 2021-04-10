@@ -30,7 +30,7 @@ class Image:
         for i in range(n):
             for j in range(m):
                 new_self.photo[i][j] = int(self.photo[int(cF*i+int(cF/2))][int(cF*j+int(cF/2))])
-        return new_self.photo.astype(int)
+        self.photo = new_self.photo.astype(int)
     #Decompress
     def amplify(self, n, m):
         if len(self.photo) >= n or len(self.photo[0]) >= m:
@@ -51,7 +51,7 @@ class Image:
                 if j % cF == 0:
                     l+=1
                 new_self.photo[i][j] = self.photo[k][l]
-        return new_self.photo.astype(int)
+        self.photo = new_self.photo.astype(int)
 
 
 
