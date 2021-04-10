@@ -8,7 +8,9 @@ class ImportExport:
     def __init__(self) -> None:
         pass
 
-    def importPhotos(self):
+    def importPhotos(self, n=-1, m = -1):
+        
+
         ganadoEnfermoCSVs = "./archivosCSV/ganadoEnfermoCSVs"
         ganadoSanoCSVs = "./archivosCSV/ganadoSanoCSVs"
 
@@ -18,12 +20,15 @@ class ImportExport:
 
         self.dataGanadoEnfermoCSVs = [[]] * len(dirGanadoEnfermoCSVs)
         self.dataGanadoSanoCSVs = [[]] * len(dirGanadoSanoCSVs)
-
-        for i in range(len(dirGanadoEnfermoCSVs)):
+        if n == -1 or n > len(dirGanadoEnfermoCSVs):
+            n = len(dirGanadoEnfermoCSVs)
+        if m == -1 or m > len(dirGanadoSanoCSVs):
+            m = len(dirGanadoSanoCSVs)
+        for i in range(n):
             p = ganadoEnfermoCSVs + "/" + dirGanadoEnfermoCSVs[i]
             self.dataGanadoEnfermoCSVs[i] = Image(p)
 
-        for i in range(len(dirGanadoSanoCSVs)):
+        for i in range(m):
             p = ganadoSanoCSVs + "/" + dirGanadoSanoCSVs[i]
             self.dataGanadoSanoCSVs[i] = Image(p)
             
