@@ -1,11 +1,11 @@
 from Entrega1 import ImageCompression 
 
 def main():
-    imageCompression = ImageCompression(1)
-    imageCompression.importPhotos(1, 0)
+    imageCompression = ImageCompression()
+    imageCompression.importPhotos(5,5)
     imageCompression.compress(2)
-    #imageCompression.amplify(2)
-    #imageCompression.export()
+    # imageCompression.amplify(2)
+    imageCompression.export()
 
 
 

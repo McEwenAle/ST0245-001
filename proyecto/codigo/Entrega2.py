@@ -10,13 +10,13 @@ class Image:
         self.photo = np.loadtxt(file, delimiter=",")
     
     def export(self, d):
-        np.savetxt(d, self.photo, delimiter=",")
+        np.savetxt(d, self.photo.astype(int), delimiter=",", fmt='%d')
 
     def compressByFactor(self, factor):
-        self.compress(self.photo, len(self.photo)/factor, len(self.photo)/factor)
+        self.compress(int(len(self.photo)/factor), int(len(self.photo[0])/factor))
 
     def amplifyByFactor(self, factor):
-        self.amplify(self.photo, len(self.photo)/factor, len(self.photo)/factor)
+        self.amplify(int(len(self.photo)*factor), int(len(self.photo[0])*factor))
 
     def compress(self, n, m):
         if len(self.photo) <= n or len(self.photo[0]) <= m:
@@ -26,11 +26,11 @@ class Image:
         if cF1 != cF2 and int(cF1) != cF1:
             return self.photo
         cF = int(cF1)
-        new_self.photo = np.ndarray((n,m))
+        new_photo = np.ndarray((n,m))
         for i in range(n):
             for j in range(m):
-                new_self.photo[i][j] = int(self.photo[int(cF*i+int(cF/2))][int(cF*j+int(cF/2))])
-        self.photo = new_self.photo.astype(int)
+                new_photo[i][j] = int(self.photo[int(cF*i+int(cF/2))][int(cF*j+int(cF/2))])
+        self.photo = new_photo.astype(np.intc)
     #Decompress
     def amplify(self, n, m):
         if len(self.photo) >= n or len(self.photo[0]) >= m:
@@ -40,7 +40,7 @@ class Image:
         if cF1 != cF2 and int(cF1) != cF1:
             return self.photo
         cF = cF1
-        new_self.photo = np.ndarray((n,m))
+        new_photo = np.ndarray((n,m))
         k = -1
         l = -1
         for i in range(n):
@@ -50,8 +50,8 @@ class Image:
             for j in range(m):
                 if j % cF == 0:
                     l+=1
-                new_self.photo[i][j] = self.photo[k][l]
-        self.photo = new_self.photo.astype(int)
+                new_photo[i][j] = int(self.photo[k][l])
+        self.photo = new_photo.astype(np.intc)
 
 
 

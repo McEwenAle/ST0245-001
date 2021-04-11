@@ -17,13 +17,13 @@ class ImageCompression:
         self.dirGanadoEnfermoCSVs = os.listdir(ganadoEnfermoCSVs)
 
         self.dirGanadoSanoCSVs = os.listdir(ganadoSanoCSVs)
-
-        self.dataGanadoEnfermoCSVs = [[]] * len(self.dirGanadoEnfermoCSVs)
-        self.dataGanadoSanoCSVs = [[]] * len(self.dirGanadoSanoCSVs)
         if n == -1 or n > len(self.dirGanadoEnfermoCSVs):
             n = len(self.dirGanadoEnfermoCSVs)
         if m == -1 or m > len(self.dirGanadoSanoCSVs):
             m = len(self.dirGanadoSanoCSVs)
+        self.dataGanadoEnfermoCSVs = [[]] * n
+        self.dataGanadoSanoCSVs = [[]] * m
+        
         for i in range(n):
             p = ganadoEnfermoCSVs + "/" + self.dirGanadoEnfermoCSVs[i]
             self.dataGanadoEnfermoCSVs[i] = Image(p)
@@ -52,7 +52,7 @@ class ImageCompression:
             p = outputGanadoEnfermoCSVs + "/" + self.dirGanadoEnfermoCSVs[i]
             self.dataGanadoEnfermoCSVs[i].export(p)
 
-        for i in range(len(self.dirGanadoSanoCSVs)):
+        for i in range(len(self.dataGanadoSanoCSVs)):
             p = outputGanadoSanoCSVs + "/" + self.dirGanadoSanoCSVs[i]
             self.dataGanadoSanoCSVs[i].export(p)
 
