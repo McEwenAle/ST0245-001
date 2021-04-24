@@ -24,7 +24,7 @@ class Hash3D:
             else:
                 l[i].append(floor(nv[i]))
                 l[i].append(ceil(nv[i]))
-        
+
 
     def combinations(self, l):
         ll = []
