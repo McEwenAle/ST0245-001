@@ -1,9 +1,20 @@
 import numpy as np
+import math
 
 class Hash3D:
 
     def __init__(self):
-        arr = np.full([2000, 2000, 2000], [])
+        self.arr = [[]] * 100
+        for i in range(len(self.arr)):
+            self.arr[i] = [[]]*100
+            for j in range(len(self.arr[i])):
+                self.arr[i][j] = [[]]*100
+                for k in range(len(self.arr[i][j])):
+                    self.arr[i][j][k] = [[]]
+        print(len(self.arr))
+        print(len(self.arr[0]))
+        print(len(self.arr[0][0]))
+        print(len(self.arr[0][0][0]))
     
     def hashfunction(self, x, y, z):
         return (x//100, y//100, z//100)
@@ -22,8 +33,16 @@ class Hash3D:
             if nv[i] == int(nv[i]):
                 l[i].append(int(nv[i]))
             else:
-                l[i].append(floor(nv[i]))
-                l[i].append(ceil(nv[i]))
+                l[i].append(math.floor(nv[i]))
+                l[i].append(math.ceil(nv[i]))
+        ll = self.combinations(l)
+        ans = []
+        for x1, y1, z1 in ll:
+            for abejas in self.arr[x1][y1][z1]:
+                for x2, y2, z2 in abejas:
+                    if math.sqrt(pow(x2-x,2) + pow(y2-y,2) + pow(z2-z,2)) <= 100:
+                        ans.append((x2, y2, z2))
+        return ans
         
 
     def combinations(self, l):
@@ -40,6 +59,5 @@ class Hash3D:
                 i += 1
         return ll
 
-
-            
-        
+hA = Hash3D()
+hA.add(0,0,0)
