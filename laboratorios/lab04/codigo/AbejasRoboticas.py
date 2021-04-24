@@ -4,17 +4,7 @@ import math
 class Hash3D:
 
     def __init__(self):
-        self.arr = [[]] * 100
-        for i in range(len(self.arr)):
-            self.arr[i] = [[]]*100
-            for j in range(len(self.arr[i])):
-                self.arr[i][j] = [[]]*100
-                for k in range(len(self.arr[i][j])):
-                    self.arr[i][j][k] = [[]]
-        print(len(self.arr))
-        print(len(self.arr[0]))
-        print(len(self.arr[0][0]))
-        print(len(self.arr[0][0][0]))
+        self.arr = [[[[] for i in range(100)] for j in range(100)] for k in range(100)]
     
     def hashfunction(self, x, y, z):
         return (x//100, y//100, z//100)
@@ -30,18 +20,17 @@ class Hash3D:
         l = [[], [], []]
         nv = [nx, ny, nz]
         for i in range(3):
-            if nv[i] == int(nv[i]):
-                l[i].append(int(nv[i]))
-            else:
-                l[i].append(math.floor(nv[i]))
-                l[i].append(math.ceil(nv[i]))
+            l[i].append(math.floor(nv[i]))
+            l[i].append(math.floor(nv[i]) + 1)
+            l[i].append(math.floor(nv[i]) - 1)
         ll = self.combinations(l)
         ans = []
         for x1, y1, z1 in ll:
-            for abejas in self.arr[x1][y1][z1]:
-                for x2, y2, z2 in abejas:
-                    if math.sqrt(pow(x2-x,2) + pow(y2-y,2) + pow(z2-z,2)) <= 100:
-                        ans.append((x2, y2, z2))
+            for x2, y2, z2 in self.arr[x1][y1][z1]:
+                print(x1, y1, z1)
+                print(x2, y2, z2)
+                if math.sqrt(pow(x2-x,2) + pow(y2-y,2) + pow(z2-z,2)) <= 100:
+                    ans.append((x2, y2, z2))
         return ans
         
 
@@ -61,3 +50,6 @@ class Hash3D:
 
 hA = Hash3D()
 hA.add(0,0,0)
+hA.add(100,0,0)
+hA.add(200, 100, 300)
+print(hA.searchPerimeter(100,0,0))
