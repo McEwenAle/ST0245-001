@@ -2,7 +2,7 @@ import math
 import numpy as np
 import pandas as pd
 import os, sys
-from Entrega2 import Image
+from Entrega2_3 import Image
 
 class ImageCompression:
     def __init__(self) -> None:
@@ -32,11 +32,18 @@ class ImageCompression:
             p = ganadoSanoCSVs + "/" + self.dirGanadoSanoCSVs[i]
             self.dataGanadoSanoCSVs[i] = Image(p)
     
-    def compress(self, ratio):
+    def lossyCompress(self, ratio):
         for e in self.dataGanadoEnfermoCSVs:
-            e.compressByFactor(ratio)
+            e.lossyCompressByFactor(ratio)
         for e in self.dataGanadoSanoCSVs:
-            e.compressByFactor(ratio)
+            e.lossyCompressByFactor(ratio)
+
+    def losslessCompress(self):
+        for e in self.dataGanadoEnfermoCSVs:
+            e.losslessCompress()
+            print(e.photo)
+        for e in self.dataGanadoSanoCSVs:
+            e.losslessCompress()
 
     def amplify(self, ratio):
         for e in self.dataGanadoEnfermoCSVs:
