@@ -35,7 +35,7 @@ class Image:
     def amplify(self, n, m):
         if len(self.photo) >= n or len(self.photo[0]) >= m:
             return self.photo
-        cF1 =  n / len(self.photo)
+        cF1 =  n / len(self.photo
         cF2 =  m / len(self.photo[0])
         if cF1 != cF2 and int(cF1) != cF1:
             return self.photo
