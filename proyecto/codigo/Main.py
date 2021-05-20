@@ -7,9 +7,4 @@ def main():
     # imageCompression.amplify(2)
     imageCompression.export()
 
-
-
-
-
-
 main()
