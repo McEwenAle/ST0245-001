@@ -9,6 +9,8 @@ class Image:
     def importPhoto(self):
         file = open(self.d)
         self.photo = np.loadtxt(file, delimiter=",").astype(np.intc)
+        self.rows = len(self.photo)
+        self.cols = len(self.photo)
     
     def export(self, d):
         np.savetxt(d, self.photo.astype(int), delimiter=",", fmt='%d')
@@ -54,50 +56,57 @@ class Image:
                 new_photo[i][j] = int(self.photo[k][l])
         self.photo = new_photo.astype(np.intc)
 
-    def keyFunction(self, item):
-        i1 = item // len(self.photo[0])
-        j1 = item % len(self.photo[0])
-        return self.photo[i1][j1]
-
     def losslessCompress(self):
+        prefix = 200
+        k = 1
         icp = []
-        index = []
-        for i in range(len(self.photo)):
-            for j in range(len(self.photo[i])):
-                index.append(j+i*len(self.photo[i]))
-        index = sorted(index, key=self.keyFunction)
-        for k in range(len(index)):
-            index[k] -= 1
-            i1 = k // len(self.photo[0])
-            j1 = k % len(self.photo[0])
-            if index[k] == -1:
-                index[k] = "|"
-            else:
-                index[k] = self.photo[i1][j1] 
-        count = 1
-        for k in range(1, len(index)):
-            if index[k] == index[k-1]:
-                count += 1
-            else:
-                icp.append(index[k-1])
-                icp.append(count)
-                count = 1
-        print(icp)
-        self.photo = np.array(icp)
-    
-    def losslessDecompress(self):
-        idp = []
-        for i in range(len(self.photo)):
-            characters = []
-            idp.append([])
-            for j in range(0, len(self.photo[i]), 2):
-                c = self.photo[i][j]
-                n = self.photo[i][j+1]
-                for k in range(n):
-                    characters.append(c)
+        while k < len(self.photo) * len(self.photo[0]):
+            i = k // len(self.photo[0])
+            j = k % len(self.photo[0])
+            t = [self.photo[i][j], 0, 0]
+            for k1 in range(k - 1 , max(k - prefix, 0), -1):
+                i = k // len(self.photo[0])
+                j = k % len(self.photo[0])
+                i1 = k1 // len(self.photo[0])
+                j1 = k1 % len(self.photo[0])
+                if self.photo[i][j] == self.photo[i1][j1]:
+                    c = 1
+                    for n in range(1, min(prefix, len(self.photo) * len(self.photo[0]) - k - 1)):
+                        i = (k+n) // len(self.photo[0])
+                        j = (k+n) % len(self.photo[0])
+                        i1 = (k1+n) // len(self.photo[0])
+                        j1 = (k1+n) % len(self.photo[0])
+                        if self.photo[i][j] != self.photo[i1][j1]:
+                            c = n
+                            break
+                    i = (k+c+1) // len(self.photo[0])
+                    j = (k+c+1) % len(self.photo[0])
+                    if  k + 1 < len(self.photo) * len(self.photo[0]) and t[2] < c:
+                        k += c - t[2]
+                        t = [self.photo[i][j], k - k1, c]
+            k += 1
+            icp.append(t)
+        self.photo = icp
 
-        table = [""] * len(r)  # Make empty table
-        for i in range(len(r)):
-            table = sorted(r[i] + table[i] for i in range(len(r)))  # Add a column of r
-        s = [row for row in table if row.endswith("\003")][0]  # Find the correct row (ending in ETX)
-        return s.rstrip("\003").strip("\002")  # Get rid of start and end markers
+
+    def losslessDecompress(self):
+        idp = [[0]*self.cols for _ in range(self.rows)]
+        k = 0
+        for l in range(len(self.photo)):
+            i = k // len(self.photo[0])
+            j = k % len(self.photo[0])
+            if self.photo[k][2] == 0:
+                idp[i][j] = self.photo[l][0]
+                k += 1
+            else:
+                for n in range(self.photo[l][2]):
+                    i = (k + n) // len(self.photo[0])
+                    j = (k + n) % len(self.photo[0])
+                    i1 = (k - self.photo[l][1] + n) // len(self.photo[0])
+                    j1 = (k - self.photo[l][1] + n) % len(self.photo[0])
+                    idp[i][j] = idp[i1][j1]
+                k += self.photo[l][2]
+        self.photo = idp
+
+
+

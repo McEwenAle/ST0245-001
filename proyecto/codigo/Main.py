@@ -1,4 +1,5 @@
 from Entrega1 import ImageCompression 
+from Entrega2_3 import Image
 
 def main():
     imageCompression = ImageCompression()
