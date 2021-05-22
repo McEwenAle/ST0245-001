@@ -41,7 +41,6 @@ class ImageCompression:
     def losslessCompress(self):
         for e in self.dataGanadoEnfermoCSVs:
             e.losslessCompress()
-            print(e.photo)
         for e in self.dataGanadoSanoCSVs:
             e.losslessCompress()
 
