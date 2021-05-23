@@ -6,7 +6,7 @@ def main():
     # img.losslessCompress()
     # img.export("./archivosCSV/compressedmages.csv")
     imageCompression = ImageCompression()
-    imageCompression.importPhotos(1,0)
+    imageCompression.importPhotos()
     # imageCompression.lossyCompress(2)
     imageCompression.losslessCompress()
     # imageCompression.amplify(2)

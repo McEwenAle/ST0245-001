@@ -39,10 +39,17 @@ class ImageCompression:
             e.lossyCompressByFactor(ratio)
 
     def losslessCompress(self):
+        count = 0
+        total = 0
         for e in self.dataGanadoEnfermoCSVs:
-            e.losslessCompress()
+            print(e.d)
+            count += 1
+            total += e.losslessCompress()
         for e in self.dataGanadoSanoCSVs:
-            e.losslessCompress()
+            print(e.d)
+            count += 1
+            total += e.losslessCompress()
+        print(total / count)
 
     def amplify(self, ratio):
         for e in self.dataGanadoEnfermoCSVs:

@@ -92,7 +92,6 @@ class Image:
 
     def losslessCompress(self):
         startTime = time.time()
-        print(len(self.photo), len(self.photo[0]))
         prefix = 200
         k = 0
         icp = []
@@ -120,6 +119,8 @@ class Image:
                     if  k + 1 < len(self.photo) * len(self.photo[0]) and t[2] < c:
                         t = [self.photo[i][j], k - k1, c]
             if t[2] < 2:
+                i = k // len(self.photo[0])
+                j = k % len(self.photo[0])
                 t = [self.photo[i][j]]
             else:
                 k += t[2]
@@ -127,8 +128,7 @@ class Image:
             icp.append(t)
         self.photo = np.array(icp)
         endtime = time.time()
-        print(len(self.photo), len(self.photo[0]))
-        print(endtime - startTime)
+        return endtime - startTime
 
 
     def losslessDecompress(self):
