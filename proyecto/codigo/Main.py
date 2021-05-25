@@ -2,13 +2,14 @@ from Entrega1 import ImageCompression
 from Entrega2_3 import Image
 
 def main():
-    img = Image("/Users/alejandromcewen/Documents/Estudios/Semestre2/EstructurasDeDatosYAlgoritmosI/ST0245-001/proyecto/codigo/archivosCSV/ganadoEnfermoCSVs/cow.csv")
-    print(img.losslessCompress())
-    # imageCompression = ImageCompression()
-    # imageCompression.importPhotos()
+    # img = Image("./archivosCSV/images.csv")
+    # img.losslessCompress()
+    # img.export("./archivosCSV/compressedmages.csv")
+    imageCompression = ImageCompression()
+    imageCompression.importPhotos(0, -1)
     # imageCompression.lossyCompress(2)
-    # imageCompression.losslessCompress()
+    imageCompression.losslessCompress()
     # imageCompression.amplify(2)
-    # imageCompression.export()
+    imageCompression.export()
     
 main()

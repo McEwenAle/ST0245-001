@@ -30,7 +30,6 @@ class ImageCompression:
         for i in range(m):
             p = ganadoSanoCSVs + "/" + self.dirGanadoSanoCSVs[i]
             self.dataGanadoSanoCSVs[i] = Image(p)
-        print(self.dataGanadoEnfermoCSVs[0].d)
 
     def lossyCompress(self, ratio):
         for e in self.dataGanadoEnfermoCSVs:
